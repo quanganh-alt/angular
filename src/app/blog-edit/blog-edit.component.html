@@ -1,0 +1,15 @@
+<p>blog-edit works!</p>
+<div *ngIf="post">
+  <form [formGroup]="updateForm">
+    <div>
+      Title <br>
+      <input [value]="post.title" formControlName="title">
+    </div>
+
+    <div>
+      Body <br>
+      <textarea cols="20" rows="10" [value]="post.body" formControlName="body"></textarea>
+    </div>
+    <button type="submit" (click)="onUpdate()">Submit</button>
+  </form>
+</div>

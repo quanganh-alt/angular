@@ -1,0 +1,15 @@
+<p>blog-detail works!</p>
+<div *ngIf="post">
+  <form>
+    <div>
+      Title <br>
+      <input [value]="post.title">
+    </div>
+
+    <div>
+      Body <br>
+      <textarea cols="20" rows="10" [value]="post.body"></textarea>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</div>

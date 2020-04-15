@@ -1,0 +1,31 @@
+<p>register-final works!</p>
+<h1>User profile form</h1>
+
+<form (ngSubmit)="onSubmit(formRegister)" #formRegister="ngForm">
+    
+    <p>Email : </p>
+    <input type="email" name="email" ngModel #txtEmail="ngModel" email required>
+    <div *ngIf="!txtEmail.valid && txtEmail.touched" >
+        <p *ngIf="txtEmail?.errors?.required">
+            Email is required
+        </p>
+        <p *ngIf="txtEmail?.errors?.email">
+            Email is invalid
+        </p>
+    </div>
+    <p>Password : </p>
+    <input type="password" name="name" #txtPassword="ngModel" ngModel minlength="6" required>
+    <div *ngIf="!txtPassword.valid && txtPassword.touched" >
+        <p *ngIf="txtPassword?.errors?.required">
+            txtPassword is required
+        </p>
+        <p *ngIf="txtPassword?.errors?.minlength">
+            The input must be of minimum length 6 characters
+        </p>
+    </div>
+    <br>
+    <button type="submit" [disabled]="formRegister.invalid">Submit</button>
+</form>
+<pre>
+    {{ form | json }}
+</pre>

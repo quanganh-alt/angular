@@ -1,0 +1,74 @@
+<h1>User profile form</h1>
+
+<form (ngSubmit)='loginUser(loginForm)' [formGroup]='loginForm' novalidate class="form">
+    <!-- Email -->
+    <p>EMail : </p>
+    <input formControlName='email' type="text" class="form-control" placeholder="Enter Email" />
+    <div class="alert  alert-danger"
+        *ngIf="loginForm.get('email').hasError('required') && loginForm.get('email').touched">
+        Email is required
+    </div>
+    <div class="alert  alert-danger" *ngIf="loginForm.get('email').hasError('email') && loginForm.get('email').touched">
+        Email is invalid
+    </div>
+    <!-- Password -->
+    <fieldset formGroupName="pwGroup">
+
+        <p>Password : </p>
+         <input formControlName='password' type="text" placeholder="Enter password" />
+
+        <div class="alert  alert-danger"
+            *ngIf="loginForm.get('pwGroup').get('password').hasError('required') && loginForm.get('pwGroup').get('password').touched">
+            Password is required
+        </div>
+        <!--<div class="alert  alert-danger"
+            *ngIf="loginForm.get('password').hasError('minlength') && loginForm.get('password').touched">
+            Password has length >= 6
+        </div> -->
+        <!-- Confirm password -->
+        <p>Confirm password : </p>
+        <input formControlName='confirmPassword' name="confirmPassword" type="password" class="form-control" placeholder="Enter Password" />
+        <div class="alert alert-danger" role="alert" *ngIf="loginForm.hasError('passwordnotmatch', ['pwGroup']) && loginForm.get('pwGroup').touched">
+            Password does not match!
+        </div>
+
+     </fieldset>
+    <!-- Age -->
+    <p>Age : </p>
+    <input formControlName='age' type="number" class="form-control" placeholder="Enter age" />
+    <div class="alert  alert-danger" *ngIf="loginForm.get('age').hasError('required') && loginForm.get('age').touched">
+        Age is required
+    </div>
+    <div class="alert  alert-danger"
+        *ngIf="(loginForm.get('age').hasError('min') || loginForm.get('age').hasError('max') )&& loginForm.get('age').touched">
+        18 45
+    </div>
+    <!-- Country -->
+    <select formControlName="country">
+        <option value="vietname" selected>Viet name</option>
+        <option value="nhatban">Nhat ban</option>
+        <option value="hanquoc">Han Quoc</option>
+    </select>
+    <!-- Gender -->
+    <p>Gender</p>
+    <input type="radio" value="male" name="gender" formControlName='gender'> male
+    <input type="radio" value="female" name="gender" formControlName='gender'> female
+    <!-- Phone -->
+    <p>Phone : </p>
+
+    <input type="tel" formControlName='phone' placeholder="Enter phone " class="form-control">
+    <div class="alert  alert-danger"
+        *ngIf="loginForm.get('phone').hasError('required') && loginForm.get('phone').touched">
+        phone is required
+    </div>
+    <div class="alert  alert-danger"
+        *ngIf="(loginForm.get('phone').hasError('pattern') )&& loginForm.get('phone').touched">
+        phone is invalid
+    </div>
+
+
+    <button [disabled]='loginForm.invalid' class="btn btn-default">Login</button>
+</form>
+<pre>
+    {{ form | json }}
+</pre>

@@ -1,0 +1,15 @@
+<div>
+  <input type="text" [formControl]="inputControl" (keydown.enter)="addTodo()">
+</div>
+<ul>
+    <li *ngFor="let item of todoList;index as i ">
+        <div>
+            Id : {{item.id}}
+            <br>
+            {{item.title}}
+        </div>
+        <button (click)="deleteTodo(i)">
+            delete
+        </button>
+    </li>
+</ul>

@@ -1,0 +1,12 @@
+<h1>Calculator</h1>
+<input type="number" (change)="updateNum1($event.target.value)">
+<select (change)="updateOperator($event.target.value)">
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="*">*</option>
+    <option value="/">/</option>
+</select>
+<input type="number" (change)="updateNum2($event.target.value)">
+<br>
+<button (click)="calculate()">thuc thi</button>
+<p>result : {{result}}</p>

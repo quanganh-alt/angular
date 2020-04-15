@@ -1,0 +1,25 @@
+<h2>Simple blog</h2>
+
+<form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+  <div>
+    Title <br>
+    <input type="text" formControlName="title">
+  </div>
+
+  <div>
+    Body <br>
+    <textarea formControlName="body" cols="20" rows="10"></textarea>
+  </div>
+  <button type="submit">Submit</button>
+</form>
+<ul>
+  <li *ngFor="let post of postList">
+    <h3>
+      <a [routerLink]="['/blog',post.id]">
+        Post id: {{post.id}} - {{post.title}}
+      </a>
+    </h3>
+    <a [routerLink]="['/blog',post.id,'edit']">Edit</a>
+    <button (click)="delete(post.id)">delete</button>
+  </li>
+</ul>
